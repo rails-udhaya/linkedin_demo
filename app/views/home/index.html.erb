@@ -1,0 +1,74 @@
+<style>
+#main_button
+{
+ -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(-90deg, #838A90, #414549) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-color: #616A71 #484E53 #363B3F;
+    border-image: none;
+    border-radius: 200px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0 rgba(255, 255, 255, 0.2) inset;
+    color: #EFEFEF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 12px;
+    margin-right: 3px;
+    padding: 7px 16px 6px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000000;
+				}
+</style>
+ 
+
+<div class="panel" style=" position: absolute;width: 92%;padding:50px">
+<div class="panel_contents">
+
+<div style="text-align:center; padding: 20px;">
+Enter the linkedIn URI to fetch data</br>
+<input type="text"  id="full_uri" size="100px" value="https://www.linkedin.com/in/udhayakumars"></br>
+EG: https://www.linkedin.com/in/udhayakumars</br>
+ 
+<input type="button" id="main_button" value="Get Details">
+</div>
+
+<div id="user_contents" style="border:0px solid;min-height:200px;height:auto;">
+<%if !@profile.blank?%>
+  <%= render :partial => "user_info.html" , :locals => {:profile => @profile } %>
+<%end%>
+<div>
+
+</div>
+</div>
+ 
+
+<div style="padding-bottom:50px"></div>
+
+
+
+
+
+
+
+<script>
+
+$('#main_button').click(function () {
+ $("#user_contents").html("")
+$("#user_contents").html('<div style="text-align:center"><img src="/assets/loading.gif"></div>')
+										$.ajax({
+														type: "POST",
+														url: "<%=fetch_linked_in_details_home_index_path%>",
+														data: { 
+														link_in_url: 		 $("#full_uri").val()
+														}
+												}).done(function( msg ) {
+														// Success
+												});
+       });
+</script>

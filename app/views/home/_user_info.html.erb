@@ -1,0 +1,129 @@
+<%if profile.blank?%>
+<div style="font-size: 20px;margin-top: 90px;text-align: center;">The URL which you provided is not available to fetch data</div>
+<%else%>
+<style>
+label
+{
+color: #000000;
+    font-size: 17px !important;
+}
+
+</style>
+<div style="border:0px solid;float:left;width:45%; padding: 20px;">
+<p>
+    <label for="first_name_title">First Name: </label><br>
+    <input type="text" name="first_name" id="first_name" value="<%=profile.first_name%>" size="50">
+</p>
+</br>
+<p>
+    <label for="last_name_title">Last Name: </label><br>
+    <input type="text" name="last_name" id="last_name" value="<%=profile.last_name%>" size="50">
+</p>
+</br>
+<p>
+    <label for="name_title">Name: </label><br>
+    <input type="text" name="name" id="name" value="<%=profile.name%>" size="50">
+</p>
+</br>
+<p>
+    <label for="location_title">Location: </label><br>
+    <input type="text" name="location" id="location" value="<%=profile.location%>" size="50">
+</p>
+</br>
+<p>
+    <label for="country_title">Country: </label><br>
+    <input type="text" name="country" id="country" value="<%=profile.country%>" size="50">
+</p>
+</br>
+<p>
+    <label for="industry_title">Industry: </label><br>
+    <input type="text" name="industry" id="industry" value="<%=profile.industry%>" size="50">
+</p>
+</br>
+
+<p>
+    <label for="skills_title">Skills: </label><br>
+    <textarea type="text" style="width: 522px;min-height:300px" id="skills"><%=profile.skills.blank? ? "" :  profile.skills.join(",")%></textarea>
+</p>
+</br>
+
+</div>
+<div style="border:0px solid;float:left;width:45%; padding: 20px;">
+<p>
+    <label for="image_title">Image: </label><br>
+    <img src="<%=profile.picture.blank? ? "/assets/no-asset.jpg" : profile.picture%>" style="width:100;height:100px" >
+</p>
+ 
+			<p style="padding-top:30px">
+    <label for="education_title">Education: </label><br>
+				<%if !profile.education.blank?%>
+				<%profile.education.each do |p_e|%>
+				<%#=p_e%>
+    <div style="float:left"><input type="text" value="<%=p_e[:name]%>">&nbsp<input type="text" value="<%=p_e[:description]%>" >&nbsp<input type="text" value="<%=p_e[:period]%>"></div></br>
+				
+				<%end%>
+				<%else%>
+								Not able to Fetch/Not Available
+				<%end%>
+</p>
+ 
+			<p style="padding-top:30px">
+    <label for="certifications_title">Certifications: </label><br>
+				<%if !profile.certifications.blank?%>
+				<%profile.certifications.each do |cert|%>
+				<%#=p_e%>
+    <div style="float:left"><input type="text" value="<%=cert[:name]%>" size="32">&nbsp<input type="text" value="<%=cert[:autority]%>" size="32"></div></br>
+				<%end%>
+				<%else%>
+								Not able to Fetch/Not Available
+				<%end%>
+</p>
+ 
+		<p style="padding-top:30px">
+    <label for="current_companies_title">Current Company: </label><br>
+				<%if !profile.current_companies.blank?%>
+				<%profile.current_companies.each do |cur_comp|%>
+				<%#=p_e%>
+    <div style="float:left"><input type="text" value="<%=cur_comp[:title]%>">&nbsp<input type="text" value="<%=cur_comp[:company]%>">&nbsp<input type="text" value="<%=cur_comp[:website]%>"></div></br>
+				
+				<%end%>
+				<%else%>
+								Not able to Fetch/Not Available
+				<%end%>
+</p>
+ 
+
+		<p style="padding-top:30px">
+    <label for="past_companies_title">Previous Employments: </label><br>
+				<%if !profile.past_companies.blank?%>
+				<%profile.past_companies.each do |pas_comp|%>
+				<%#=p_e%>
+    <div style="float:left"><input type="text" value="<%=pas_comp[:title]%>">&nbsp<input type="text" value="<%=pas_comp[:company]%>">&nbsp<input type="text" value="<%=pas_comp[:website]%>"></div></br>
+				<%end%>
+				<%else%>
+								Not able to Fetch/Not Available
+				<%end%>
+</p>
+ </br>
+		<p style="margin-top: 40px;">
+    <label for="groups_title">Groups: </label><br>
+				<%if !profile.groups.blank?%>
+				<%profile.groups.each do |group|%>
+				<%#=p_e%>
+    <div style="float:left"><input type="text" value="<%=group[:name]%>">&nbsp<input type="text" value="<%=group[:link]%>" size="45"></div></br>
+				<%end%>
+				<%else%>
+								Not able to Fetch/Not Available
+				<%end%>
+</p>
+</br>
+				
+
+ 
+  </div>
+		
+		
+		<script>
+		$('#skills').tagsInput({width:'500px',height:'250px','defaultText':''});
+		</script>
+		<%end%>
